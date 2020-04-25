@@ -65,7 +65,7 @@ app.use((error, req, res, next) => {
 
 mongoose
     .connect(
-        'mongodb-cloud-atlas-uri',
+        'mongodb+srv://Ashish:root@cluster0-ijuae.mongodb.net/messages?retryWrites=true&w=majority',
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
