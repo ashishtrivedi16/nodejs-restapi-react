@@ -53,7 +53,7 @@ app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 
 app.use((error, req, res, next) => {
-    console.log(error);
+    // console.log(error);
     const status = error.statusCode || 500;
     const message = error.message;
     const data = error.data;
@@ -72,7 +72,11 @@ mongoose
         }
     )
     .then(() => {
-        app.listen(8080);
+        const server = app.listen(8080);
+        const io = require('./socket').init(server);
+        io.on('connection', socket => {
+            console.log('Client connected!');
+        })
     })
     .catch((err) => {
         console.log(err);
